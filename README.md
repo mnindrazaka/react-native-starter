@@ -27,6 +27,10 @@ https://programmingwithmosh.com/react-native/make-api-calls-in-react-native-usin
 API :  
 https://dummyjson.com/
 
-### 5. Setup Searching Feature
+### 5. Setup Detail Page Feature
 
-### 6. Setup Detail Page Feature
+Here you can click one of the items and move to detail screen
+
+### 6. Setup Searching Feature
+
+Here you can filter the items using text input and refetch the data
