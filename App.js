@@ -27,14 +27,20 @@ function App(){
     <NavigationContainer>
       <Stack.Navigator initialRouteName='Home'>
         <Stack.Screen 
-        name = "Home" 
-        component={DashboardScreen}
-        options={{title: 'Dashboard'}}/>
+        name = "Home">
+          {(props) => <DashboardScreen {...props} extraData = {dummyData}/>}
+          </Stack.Screen> 
+        {/* component={DashboardScreen} */}
+        {/* options={{title: 'Dashboard'}}/> */}
         <Stack.Screen name = "Details" component={DetailsProduct}/>
 
       </Stack.Navigator>
     </NavigationContainer>
   );
+}
+
+function dummyData(){
+  <Text> Passing additional props​ </Text>
 }
 
 export default App;
