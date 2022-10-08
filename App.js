@@ -12,6 +12,10 @@ return (
 );
 }
   return (
-    <NavigationContainer>{ }</NavigationContainer>
+function DetailsProduct(){
+  return(
+    <View style = {{ flex:1, alignItems: 'center', justifyContent: 'center'}}>
+      <Text>Detail Product</Text>
+    </View>
   )
 }
