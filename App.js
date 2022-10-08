@@ -6,10 +6,14 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const Stack = createNativeStackNavigator();
 
-function DashboardScreen(){
+function DashboardScreen({ navigation }){
 return (
   <View style = {{ flex: 1, alignItems: 'center', justifyContent: 'center'}}>
     <Text>Dashboard Screen</Text>
+    <Button 
+    title='Go to Details Product'
+    onPress={() => navigation.navigate('Details')}
+    />
   </View>
 );
 }
