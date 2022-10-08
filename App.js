@@ -25,9 +25,10 @@ function DetailsProduct({navigation}){
       <Text>Detail Product</Text>
       <Button
       title='Go to Details... again'
-      onPress={() => navigation.push('Home')}
+      onPress={() => navigation.push('Details')}
       />
-    
+      <Button title='Go to Dashboard' onPress={() => navigation.navigate('Home')}/>
+      <Button title='Go Back' onPress={()=> navigation.goBack()}/> 
     </View>
   )
 }
