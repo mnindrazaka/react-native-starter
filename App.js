@@ -26,7 +26,10 @@ function App(){
   return(
     <NavigationContainer>
       <Stack.Navigator initialRouteName='Home'>
-        <Stack.Screen name = "Home" component={DashboardScreen}/>
+        <Stack.Screen 
+        name = "Home" 
+        component={DashboardScreen}
+        options={{title: 'Dashboard'}}/>
         <Stack.Screen name = "Details" component={DetailsProduct}/>
 
       </Stack.Navigator>
