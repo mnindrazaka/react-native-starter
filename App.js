@@ -21,22 +21,39 @@ return (
     </Text>
     <Button 
     title='Go to Details Product'
-    onPress={() => navigation.navigate('Details')}
+    onPress={() => navigation.navigate('Details',{itemId:86,
+    otherParam: 'Data ini diperoleh dari dashboard layer',})}
     />
   </View>
 );
 }
 
-function DetailsProduct({navigation}){
+function DetailsProduct({route, navigation}){
+
+  const {itemId, otherParam} = route.params;
+
   return (
   <SafeAreaView style={style.container}>
   <View>
+    
     <Text style={style.title}>
       Klik menu dibawah untuk melakukan pindah layer / class ke Detail Produk.
     </Text>
+
+    <Text style= {style.title}>
+      itemId: {JSON.stringify(itemId)}
+    </Text>
+
+    <Text style = {style.title}>
+      otherParam: {JSON.stringify(otherParam)}
+    </Text>
+
     <Button
       title="Go to Details... again"
-      onPress={() => navigation.push('Details')}
+      onPress={() => navigation.push('Details', {
+        itemId:Math.floor(Math.random()*100),
+      })
+    }
     />
   </View>
   <Separator />
@@ -50,7 +67,6 @@ function DetailsProduct({navigation}){
       onPress={() => navigation.navigate('Home')}
     />
   </View>
-  <Separator />
 
   <Separator />
   <View>
@@ -65,6 +81,19 @@ function DetailsProduct({navigation}){
   </View>
   <Separator />
 
+
+  <View>
+    <Text style={style.title}>
+    Klik menu dibawah ini untuk melakukan pindah layer / class ke Halaman Utama.
+    </Text>
+    <Button
+      title="Go back to first screen in stack"
+      color="#f194ff"
+      onPress={() => navigation.popToTop()}
+    />
+  </View>
+  <Separator />
+
   <View>
     <Text style={style.title}>
      Disable 
@@ -75,12 +104,14 @@ function DetailsProduct({navigation}){
       onPress={() => Alert.alert('Cannot press this one')}
     />
   </View>
-
   <Separator />
+
+
   <View>
     <Text style={style.title}>
       This layout strategy lets the title define the width of the button.
     </Text>
+   
     <View style={style.fixToText}>
       <Button
         title="Left button"
@@ -89,9 +120,11 @@ function DetailsProduct({navigation}){
       <Button
         title="Right button"
         onPress={() => Alert.alert('Right button pressed')}
+       
       />
     </View>
   </View>
+
 </SafeAreaView>
   )
 }
