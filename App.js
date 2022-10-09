@@ -1,16 +1,24 @@
 import * as React from 'react';
-import {View, Text, Button} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
+import { StyleSheet, Button, View, SafeAreaView, Text, Alert } from 'react-native';
+
 
 const Stack = createNativeStackNavigator();
+const Separator = () => (
+  <View style={style.separator}/>
+);
+
 
 function DashboardScreen({ navigation }){
 return (
   <View style = {{ flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-    <Text>Dashboard Screen</Text>
+    <Text style={style.title}>
+      kali ini belajar bagaimana menggunakan navigator .
+       klik tombol dibawah untuk pindah ke halaman detail produk.
+    </Text>
     <Button 
     title='Go to Details Product'
     onPress={() => navigation.navigate('Details')}
@@ -20,16 +28,71 @@ return (
 }
 
 function DetailsProduct({navigation}){
-  return(
-    <View style = {{ flex:1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text>Detail Product</Text>
-      <Button
-      title='Go to Details... again'
+  return (
+  <SafeAreaView style={style.container}>
+  <View>
+    <Text style={style.title}>
+      Klik menu dibawah untuk melakukan pindah layer / class ke Detail Produk.
+    </Text>
+    <Button
+      title="Go to Details... again"
       onPress={() => navigation.push('Details')}
+    />
+  </View>
+  <Separator />
+  <View>
+    <Text style={style.title}>
+    Klik menu dibawah ini untuk melakukan pindah layer / class ke Halaman Utama.
+    </Text>
+    <Button
+      title="Go to Dashboard"
+      color="#f194ff"
+      onPress={() => navigation.navigate('Home')}
+    />
+  </View>
+  <Separator />
+
+  <Separator />
+  <View>
+    <Text style={style.title}>
+    Go Back.
+    </Text>
+    <Button
+      title="Go Back"
+      color="#f194ff"
+      onPress={() => navigation.navigate('Home')}
+    />
+  </View>
+  <Separator />
+
+  <View>
+    <Text style={style.title}>
+     Disable 
+    </Text>
+    <Button
+      title="Saya tidak bisa di pencet"
+      disabled
+      onPress={() => Alert.alert('Cannot press this one')}
+    />
+  </View>
+
+  <Separator />
+  <View>
+    <Text style={style.title}>
+      This layout strategy lets the title define the width of the button.
+    </Text>
+    <View style={style.fixToText}>
+      <Button
+        title="Left button"
+        onPress={() => Alert.alert('Left button pressed')}
       />
-      <Button title='Go to Dashboard' onPress={() => navigation.navigate('Home')}/>
-      <Button title='Go Back' onPress={()=> navigation.goBack()}/> 
+      <Button
+        title="Right button"
+        onPress={() => Alert.alert('Right button pressed')}
+      />
     </View>
+  </View>
+</SafeAreaView>
   )
 }
 
@@ -54,5 +117,28 @@ function App(){
 function dummyData(){
   <Text> Passing additional props​ </Text>
 }
+
+
+const style = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    marginHorizontal: 16,
+  },
+  title: {
+    textAlign: 'center',
+    marginVertical: 8,
+    fontSize: 20
+  }, fixToText: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  separator: {
+    marginVertical: 8,
+    borderBottomColor: '#737373',
+    borderBottomWidth: StyleSheet.hairlineWidth,
+  },
+});
+
 
 export default App;
