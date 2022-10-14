@@ -3,29 +3,79 @@ import { NavigationContainer } from '@react-navigation/native';
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { StyleSheet, Button, View, SafeAreaView, Text, Alert } from 'react-native';
+import { StyleSheet, Button, View, SafeAreaView, Text, Alert, TextInput } from 'react-native';
 
 
 const Stack = createNativeStackNavigator();
+
 const Separator = () => (
   <View style={style.separator}/>
 );
 
 
-function DashboardScreen({ navigation }){
+function DashboardScreen({ navigation, route }){
+  React.useEffect(() => {
+    if (route.params?.post){
+
+    }
+  }, [route.params?.post]);
+
 return (
-  <View style = {{ flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+  <SafeAreaView style={style.container}>
+  <View>
+
+    
     <Text style={style.title}>
       kali ini belajar bagaimana menggunakan navigator .
        klik tombol dibawah untuk pindah ke halaman detail produk.
     </Text>
+
     <Button 
     title='Go to Details Product'
     onPress={() => navigation.navigate('Details',{itemId:86,
     otherParam: 'Data ini diperoleh dari dashboard layer',})}
     />
+
+<Text style={{ margin: 10 }}>Post: {route.params?.post}</Text>
+
+<Separator/>
+    <Button
+  
+     title='Create Post'
+      onPress = {()=> navigation.navigate('CreatePost')}
+      color="#f194ff"
+      />
+    
   </View>
+  </SafeAreaView>
 );
+}
+
+function CreatePostScreen({navigation, route}){
+  const [postText, setPostText] =React.useState('');
+
+  return(
+    <>
+    <TextInput
+    multiline
+    placeholder='Apa yang anda pikirkan?'
+    style = {{ height: 200, padding:10, backgroundColor:'white'}}
+    value={postText}
+    onChangeText={setPostText}
+    />
+
+    <Button
+    title='Done'
+    onPress={()=>{
+      navigation.navigate({
+        name: 'Home',
+        params: {post:postText},
+        merge: true,
+      });
+    }}
+    />
+    </>
+  );
 }
 
 function DetailsProduct({route, navigation}){
@@ -141,6 +191,7 @@ function App(){
         {/* component={DashboardScreen} */}
         {/* options={{title: 'Dashboard'}}/> */}
         <Stack.Screen name = "Details" component={DetailsProduct}/>
+        <Stack.Screen name = "CreatePost" component={CreatePostScreen}/>
 
       </Stack.Navigator>
     </NavigationContainer>
@@ -167,7 +218,7 @@ const style = StyleSheet.create({
     justifyContent: 'space-between',
   },
   separator: {
-    marginVertical: 8,
+    marginVertical: 10,
     borderBottomColor: '#737373',
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
