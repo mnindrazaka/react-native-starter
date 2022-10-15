@@ -47,6 +47,12 @@ return (
       />
     
   </View>
+
+<Separator/>
+      <Button
+      title='Profile'
+      onPress={() => navigation.navigate('Profile', {name: 'Custom profile header'})}
+      />
   </SafeAreaView>
 );
 }
@@ -179,6 +185,17 @@ function DetailsProduct({route, navigation}){
   )
 }
 
+function ProfileScreen({navigation}){
+  return (
+   
+    <View>
+    <Text style={style.title}>
+      Custom Header 
+    </Text>
+    <Button title="Go back" onPress={() => navigation.goBack()} />
+    </View>
+    )
+}
 
 function App(){
   return(
@@ -192,7 +209,9 @@ function App(){
         {/* options={{title: 'Dashboard'}}/> */}
         <Stack.Screen name = "Details" component={DetailsProduct}/>
         <Stack.Screen name = "CreatePost" component={CreatePostScreen}/>
-
+        <Stack.Screen name="Profile" component={ProfileScreen}
+        options={({ route }) => ({title: route.params.name})}
+          />
       </Stack.Navigator>
     </NavigationContainer>
   );
