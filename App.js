@@ -210,8 +210,15 @@ function App(){
         <Stack.Screen name = "Details" component={DetailsProduct}/>
         <Stack.Screen name = "CreatePost" component={CreatePostScreen}/>
         <Stack.Screen name="Profile" component={ProfileScreen}
-        options={({ route }) => ({title: route.params.name})}
-          />
+
+        options={({ route }) => ({title: route.params.name, headerStyle: {
+          backgroundColor: '#f194ff'},
+        headerTintColor: '#fff',
+      headerTitleStyle: {
+        fontWeight:'bold'
+      },
+    })}
+    />
       </Stack.Navigator>
     </NavigationContainer>
   );
