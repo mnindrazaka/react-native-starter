@@ -57,6 +57,15 @@ return (
 );
 }
 
+// function logoTitle(){
+//   return(
+//     <Image
+//     style={{ widht: 50, height:50}}
+//     source = {require('expo/snack-static/react-native-logo.png')}
+//     />
+//   )
+// }
+
 function CreatePostScreen({navigation, route}){
   const [postText, setPostText] =React.useState('');
 
@@ -217,6 +226,13 @@ function App(){
       headerTitleStyle: {
         fontWeight:'bold'
       },
+      headerRight: ()=>(
+        <Button
+        onPress={() => alert('ini button')}
+        title="info"
+        color="#f194ff"
+        />
+      )
     })}
     />
       </Stack.Navigator>
